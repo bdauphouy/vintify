@@ -30,9 +30,10 @@ export const generateShopifyCSV = (products: Product[]) => {
   const shopifyProducts: ShopifyProduct[] = [];
 
   for (const product of products) {
-    for (let i = 0; i < product.images.length; i++) {
-      const handle = slugify(product.title);
+    const handle =
+      slugify(product.title) + Math.random().toString(36).substring(2, 9);
 
+    for (let i = 0; i < product.images.length; i++) {
       if (i === 0) {
         shopifyProducts.push({
           Handle: handle,
