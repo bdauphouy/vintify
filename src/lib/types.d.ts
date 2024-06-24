@@ -23,3 +23,9 @@ export interface ShopifyProduct {
 }
 
 export type ExportFormat = "json" | "csv-for-shopify";
+
+export type Image = {
+  id: string;
+  format: string;
+  base64: string;
+};

@@ -9,6 +9,7 @@
   } from "filedrop-svelte";
   import Images from "./images.svelte";
   import { createdProducts } from "$lib/stores/created-products";
+  import type { Image } from "$lib/types";
 
   export let isExtended = true;
   let productTitle = "";
@@ -20,7 +21,7 @@
     accept: "image/*",
   };
   let files: FileDropFiles;
-  let images: HTMLImageElement[] = [];
+  let images: Image[] = [];
   let isDragOver = false;
 
   const handleFileDrop = (e: CustomEvent<{ files: FileDropFiles }>) => {
@@ -35,11 +36,12 @@
 
     for (const file of files.accepted) {
       const reader = new FileReader();
+      const id = Math.random().toString(36).substring(2, 9);
 
       reader.onload = () => {
         const image = new Image();
         image.src = reader.result as string;
-        images = [...images, image];
+        images = [...images, { id, format: file.type, base64: image.src }];
       };
 
       reader.readAsDataURL(file);
@@ -50,10 +52,10 @@
 
   const handleFileDragLeave = () => (isDragOver = false);
 
-  const handleImageRemove = (e: CustomEvent<{ index: number }>) => {
-    const { index } = e.detail;
+  const handleImageRemove = (e: CustomEvent<{ id: number }>) => {
+    const { id } = e.detail;
 
-    images = images.filter((_, i) => i !== index);
+    images = images.filter((_, i) => i !== id);
   };
 
   const handleSubmit = async (e: SubmitEvent) => {
@@ -75,7 +77,7 @@
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        images: images.map((image) => image.src),
+        images,
       }),
     });
 

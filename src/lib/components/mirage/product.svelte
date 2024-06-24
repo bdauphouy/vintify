@@ -1,10 +1,11 @@
 <script lang="ts">
+  import type { Image } from "$lib/types";
   import { createEventDispatcher } from "svelte";
 
   export let id = "";
   export let title = "";
   export let price = "";
-  export let images: HTMLImageElement[];
+  export let images: Image[];
 
   const dispatch = createEventDispatcher();
 
@@ -22,7 +23,7 @@
     <img
       draggable="false"
       class="h-80 w-full object-cover"
-      src={images[0].src}
+      src={images[0].base64}
       alt={title}
     />
   {/if}
