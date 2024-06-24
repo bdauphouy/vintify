@@ -26,11 +26,13 @@
 <header
   class="bg-gray-100 pt-10 transition-[padding] duration-300 {isExtended
     ? 'pb-40'
-    : 'pb-20'} flex flex-col items-center px-20"
+    : 'pb-20'} flex flex-col items-center px-6 md:px-20"
 >
-  <div class="w-full flex justify-between">
-    <div class="flex gap-4">
-      <img class="w-20" src="/images/vintify.svg" alt="vintify logo" />
+  <div class="w-full flex items-start sm:items-center justify-between">
+    <div class="flex gap-4 flex-col sm:flex-row">
+      <a href="/">
+        <img class="w-20" src="/images/vintify.svg" alt="vintify logo" />
+      </a>
       <span
         >Made by <a
           href="https://x.com/bdauphouy"
@@ -41,23 +43,25 @@
     </div>
     <a
       href="https://github.com/bdauphouy/vintify"
-      class="flex gap-2 underline underline-offset-4 hover:text-black/60 transition-colors duration-300"
+      class="items-center flex gap-2 underline underline-offset-4 hover:text-black/60 transition-colors duration-300"
       ><img class="w-4" src="/images/github.svg" alt="github logo" /> Github</a
     >
   </div>
 
   <h1
-    class="text-4xl font-bold transition-[margin] duration-300 {isExtended
+    class="text-4xl font-bold transition-[margin] duration-300 leading-snug {isExtended
       ? 'mt-40'
       : 'mt-10'}"
   >
     Export your
-    <span class="bg-blue-400 text-white px-3 py-1 rounded-lg">Vinted</span>
+    <span class="bg-blue-400 text-white px-2 md:px-3 md:py-1 rounded-lg"
+      >Vinted</span
+    >
     products easily.
   </h1>
 
-  <form class="max-w-xl w-full mt-20" on:submit={handleSubmit}>
-    <div class="flex items-end gap-4">
+  <form class="md:max-w-xl w-full mt-20" on:submit={handleSubmit}>
+    <div class="flex sm:items-end gap-4 flex-col sm:flex-row">
       <Input
         label="Enter your Vinted profile URL"
         placeholder="https://www.vinted.fr/member/12345678"

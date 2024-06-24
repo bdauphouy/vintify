@@ -59,7 +59,7 @@
       {/each}
     </ul>
   {:else}
-    <div class="flex gap-4 justify-center">
+    <div class="flex gap-4 justify-center px-6">
       {#if isFetched}
         <img src="/images/sad.svg" alt="sad face" class="w-6" />
         <p>No products found.</p>
