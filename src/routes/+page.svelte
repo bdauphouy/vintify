@@ -3,10 +3,10 @@
   import Header from "$lib/components/header.svelte";
   import Loader from "$lib/components/loader.svelte";
   import Products from "$lib/components/products.svelte";
+  import TopBanner from "$lib/components/top-banner.svelte";
   import { selectedProducts } from "$lib/stores/selected-products";
   import type { Product } from "$lib/types";
   import { getProducts } from "$lib/utils";
-  import TopBanner from "$lib/components/top-banner.svelte";
 
   let products: Product[] = [];
   let isFetching = false;
@@ -35,7 +35,7 @@
   };
 </script>
 
-<!-- <TopBanner /> -->
+<TopBanner />
 
 <Header isExtended={products.length === 0} on:fetch={handleSubmit} />
 

@@ -1,6 +1,6 @@
+import { vinted } from "$lib/api/index";
 import { json } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
-import { vinted } from "$lib/api/index";
 
 export const GET: RequestHandler = async ({ params }) => {
   const { id } = params;

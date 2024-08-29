@@ -3,12 +3,17 @@
 </script>
 
 <div
-  class="h-16 bg-blue-400 flex justify-center items-center text-white font-medium"
+  class="h-14 bg-blue-400 flex justify-center items-center text-white font-medium"
 >
   <h3 class="flex gap-4 items-center">
-    You like the website and you want to support me?
-    <Button as="a" href="/" variant="secondary" size="sm"
-      >Buy me a coffee</Button
+    You like the website? Give me a star :)
+    <Button
+      as="a"
+      href="https://github.com/bdauphouy/vintify"
+      variant="secondary"
+      size="sm"
     >
+      Go to Github
+    </Button>
   </h3>
 </div>

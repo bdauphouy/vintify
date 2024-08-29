@@ -8,8 +8,6 @@ export class Vinted {
   constructor() {
     this.baseUrl = "https://www.vinted.fr";
     this.cookie = undefined;
-
-    this.init();
   }
 
   private async init() {
@@ -32,11 +30,9 @@ export class Vinted {
 
   async getProducts(id: string): Promise<Product[]> {
     if (!this.cookie) {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await this.init();
 
-      this.getProducts(id);
-
-      return [];
+      return this.getProducts(id);
     }
 
     const products = [];
