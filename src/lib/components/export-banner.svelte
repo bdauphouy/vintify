@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { slide } from "svelte/transition";
-  import Button from "./button.svelte";
   import { selectedProducts } from "$lib/stores/selected-products";
   import type { ExportFormat, Product } from "$lib/types";
   import { downloadCSV, downloadJSON, generateShopifyCSV } from "$lib/utils";
+  import { slide } from "svelte/transition";
+  import Button from "./button.svelte";
   import Radio from "./radio.svelte";
 
   export let products: Product[] = [];
@@ -36,8 +36,7 @@
 
 <div
   transition:slide={{ duration: 300, delay: 300 }}
-  class="fixed h-36 flex justify-between items-center w-full bottom-0 bg-blue-400 text-white px-8"
->
+  class="fixed flex flex-col sm:flex-row sm:justify-between sm:items-center gap-6 w-full bottom-0 bg-blue-400 text-white p-6">
   <div class="flex flex-col gap-4">
     <h3 class="font-medium">Select the export format.</h3>
     <ul class="flex gap-4 items-center">
@@ -46,11 +45,10 @@
           name="export-format"
           value="csv-for-shopify"
           on:input={handleInput}
-          checked={exportFormat === "csv-for-shopify"}
-        >
-          <div class="flex gap-2">
+          checked={exportFormat === "csv-for-shopify"}>
+          <div class="flex gap-2 items-center">
             CSV for
-            <img class="w-20" src="/images/shopify.png" alt="shopify logo" />
+            <img class="w-16" src="/images/shopify.png" alt="shopify logo" />
           </div>
         </Radio>
       </li>
@@ -59,8 +57,7 @@
           name="export-format"
           value="json"
           on:input={handleInput}
-          checked={exportFormat === "json"}
-        >
+          checked={exportFormat === "json"}>
           <div class="flex gap-2">JSON</div>
         </Radio>
       </li>

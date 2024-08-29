@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { Product as ProductType } from "$lib/types";
-  import Product from "./product.svelte";
-  import Button from "./button.svelte";
   import { selectedProducts } from "$lib/stores/selected-products";
+  import type { Product as ProductType } from "$lib/types";
+  import Button from "./button.svelte";
+  import Product from "./product.svelte";
 
   export let products: ProductType[] = [];
   export let isFetched = false;
@@ -32,11 +32,14 @@
   };
 </script>
 
-<section class="max-w-6xl mx-auto pt-10 pb-60">
+<section class="max-w-6xl mx-auto pt-10 pb-60 px-6 lg:px-20">
   {#if products.length > 0}
-    <header class="flex justify-between items-center">
-      <h2 class="text-4xl font-semibold">Products of {products[0].vendor}</h2>
-      <div class="flex gap-4 items-center">
+    <header
+      class="flex justify-between items-start md:items-center md:flex-row flex-col gap-8">
+      <h2 class="text-4xl font-semibold">
+        Products of {products[0].vendor}
+      </h2>
+      <div class="flex flex-shrink-0 gap-4 items-center">
         <Button on:click={handleClickSelectAll}>Select All</Button>
         <Button variant="secondary" on:click={handleClickUnselectAll}>
           Unselect All
@@ -44,7 +47,8 @@
       </div>
     </header>
 
-    <ul class="grid grid-cols-4 gap-4 mt-10">
+    <ul
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-10">
       {#each products as product}
         <li>
           <Product
@@ -53,8 +57,7 @@
             price={product.price}
             images={product.images}
             isSelected={$selectedProducts.includes(product.id)}
-            on:select={handleSelect}
-          />
+            on:select={handleSelect} />
         </li>
       {/each}
     </ul>
