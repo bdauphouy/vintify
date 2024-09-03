@@ -16,7 +16,7 @@
     try {
       const profileId = checkProfileUrl(vintedProfileUrl);
 
-      dispatch("fetch", { profileId });
+      dispatch("fetch", { profileId: profileId.split("-")[0] });
     } catch (error) {
       inputError = (error as Error).message;
     }
@@ -35,7 +35,7 @@
       <span class="text-sm sm:text-base">
         Made by
         <a
-          href="https://x.com/bdauphouy"
+          href="https://bdau.fr"
           class="text-blue-400 hover:text-blue-400/80 transition-colors duration-300 underline underline-offset-4">
           @badolebado
         </a>
