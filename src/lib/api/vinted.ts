@@ -14,14 +14,18 @@ export class Vinted {
     const response = await fetch(this.baseUrl);
 
     try {
-      const cookie = response.headers.get("set-cookie");
+      const setCookies = response.headers.getSetCookie();
 
-      if (cookie) {
-        const parsedCookie = parse(parse(cookie)["SameSite"])[
-          "Lax, _vinted_fr_session"
-        ];
+      if (setCookies) {
+        const cookie = setCookies.find((cookie) =>
+          cookie.includes("_vinted_fr_session"),
+        );
 
-        this.cookie = parsedCookie;
+        if (cookie) {
+          const parsedCookie = parse(cookie)["_vinted_fr_session"];
+
+          this.cookie = parsedCookie;
+        }
       }
     } catch (error) {
       throw new Error("Failed to initialize session.");
